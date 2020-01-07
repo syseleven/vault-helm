@@ -59,7 +59,7 @@ spec:
           image: "{{ .Values.global.image }}"
           imagePullPolicy: {{ .Values.global.imagePullPolicy }}
           command: {{ template "vault.command" . }}
-          args: {{ template "vault.args" . }}
+          args: {{ template "vault.args" . }} -log-level={{ .Values.server.loglevel }}
           env:
             - name: HOST_IP
               valueFrom:
@@ -107,7 +107,7 @@ spec:
         {{- end }}
           lifecycle:
             # Vault container doesn't receive SIGTERM from Kubernetes
-            # and after the grace period ends, Kube sends SIGKILL.  This 
+            # and after the grace period ends, Kube sends SIGKILL.  This
             # causes issues with graceful shutdowns such as deregistering itself
             # from Consul (zombie services).
             preStop:

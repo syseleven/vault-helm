@@ -52,13 +52,15 @@ server:
     #    hosts:
     #      - chart-example.local
 
+  # Configure the Log Level Supported log levels. This defaults to "info". The available log levels are "trace", "debug", "info", "warn", and "err"
+  loglevel: "err"
 
   # authDelegator enables a cluster role binding to be attached to the service
   # account.  This cluster role binding can be used to setup Kubernetes auth
   # method.  https://www.vaultproject.io/docs/auth/kubernetes.html
   authDelegator:
     enabled: false
-  
+
   # extraContainers is a list of sidecar containers. Specified as a raw YAML string.
   extraContainers: null
 
@@ -138,7 +140,7 @@ server:
     targetPort: 8200
     # Extra annotations for the service definition
     annotations: {}
-    
+
   # This configures the Vault Statefulset to create a PVC for data
   # storage when using the file backend.
   # See https://www.vaultproject.io/docs/audit/index.html to know more
@@ -255,7 +257,7 @@ server:
   # Definition of the serviceaccount used to run Vault.
   serviceaccount:
     annotations: {}
-  
+
 # Vault UI
 ui:
   # True if you want to create a Service entry for the Vault UI.
